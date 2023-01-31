@@ -201,25 +201,17 @@ jobs:
           fingerprints:
             - "8c:1b:d6:2d:60:be:9c:94:23:9a:a0:dc:11:de:b3:0c"
       # attach workspace
-      - attach_workplace:
+      - attach_workspace:
           at: ~/
 
       - install_ansible
 
+      - attach_workspace:
+          at: ~/
+
       - run:
           name: Configure server
           command: |
-            echo TYPEORM_CONNECTION=$TYPEORM_CONNECTION >> backend/.env
-            echo TYPEORM_DATABASE=$TYPEORM_DATABASE >> backend/.env
-            echo TYPEORM_ENTITIES=$TYPEORM_ENTITIES >> backend/.env
-            echo TYPEORM_HOST=$TYPEORM_HOST >> backend/.env
-            echo TYPEORM_MIGRATIONS=$TYPEORM_MIGRATIONS >> backend/.env
-            echo TYPEORM_MIGRATIONS_DIR=$TYPEORM_MIGRATIONS_DIR >> backend/.env
-            echo TYPEORM_PASSWORD=$TYPEORM_PASSWORD >> backend/.env
-            echo TYPEORM_PORT=$TYPEORM_PORT >> backend/.env
-            echo TYPEORM_USERNAME=$TYPEORM_USERNAME >> backend/.env
-            echo AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION >> backend/.env
-            cat backend/.env
             cd .circleci/ansible
             ansible-playbook -i inventory.txt configure-server.yml
             cat inventory.txt
