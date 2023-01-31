@@ -7,7 +7,7 @@
 - name: "Install Dependencies"
   become: true
   apt:
-    name: ["nodejs", "tar", "gzip", "git"]
+    name: ["nodejs", "tar", "gzip", "git", "npm"]
     state: latest
     update_cache: yes
 
