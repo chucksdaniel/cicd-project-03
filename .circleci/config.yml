@@ -224,6 +224,7 @@ jobs:
           at: ~/
 
       - install_ansible
+      - install_awscli
 
       - attach_workspace:
           at: ~/
@@ -248,7 +249,7 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      # - install_awscli
+      - install_awscli
       - run:
           name: Run migrations
           command: |
