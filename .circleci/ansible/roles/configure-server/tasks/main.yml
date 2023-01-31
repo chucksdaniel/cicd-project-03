@@ -1,5 +1,3 @@
----
-
 - name: 'Add Node.js from source'
   become: true 
   shell: |
