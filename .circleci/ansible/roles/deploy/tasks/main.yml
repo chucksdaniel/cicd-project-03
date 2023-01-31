@@ -1,0 +1,15 @@
+- name: "Creates backend app directory"
+  file:
+    path: ~/backend-app
+    state: directory
+
+- name: "Unarchive backend files"
+  unarchive:
+    src: artifact.tar.gz
+    dest: ~/backend-app
+
+- name: "Run Server"
+  become: true
+  command: pm2 start npm --start
+  args:
+    chdir: ./backend-app
