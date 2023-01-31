@@ -10,6 +10,6 @@
 
 - name: "Run Server"
   become: true
-  command: pm2 start npm --start
+  command: pm2 start npm -- start
   args:
     chdir: ./backend-app
