@@ -339,6 +339,7 @@ jobs:
             cd backend
             npm i
             npm run build
+            cd ..
             cd .circleci/ansible
             mkdir files && cd files
             # Zip the directory
