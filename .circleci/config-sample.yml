@@ -297,12 +297,12 @@ workflows:
               requires: [cloudfront-update]
 
 
-            echo "Destroying environment: << parameters.workflow_id >> "
-            aws cloudformation delete-stack \
-              --stack-name udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}
-              aws s3 rm s3://udapeople-01252023 --recursive
-              aws cloudformation delete-stack \
-              --stack-name udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}
+        #     echo "Destroying environment: << parameters.workflow_id >> "
+        #     aws cloudformation delete-stack \
+        #       --stack-name udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}
+        #       aws s3 rm s3://udapeople-01252023 --recursive
+        #       aws cloudformation delete-stack \
+        #       --stack-name udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}
 
-                    workflow_id:
-        type: string 
+        #             workflow_id:
+        # type: string 
