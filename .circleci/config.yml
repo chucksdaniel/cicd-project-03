@@ -218,6 +218,7 @@ jobs:
     docker:
       # Docker image here that supports Ansible
       - image: cimg/base:stable
+      # - image: python:3.7-alpine3.16
     steps:
       # Checkout code from git
       - checkout
@@ -228,6 +229,11 @@ jobs:
       # attach workspace
       - attach_workspace:
           at: ~/
+
+      # - run:
+      #     name: Install dependencies
+      #     command: |
+      #       apk add --update --no-cache tar gzip ansible aws-cli
 
       - install_ansible
       - install_awscli
