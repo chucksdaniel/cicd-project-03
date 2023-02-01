@@ -25,9 +25,9 @@
     # sudo npm install forever -g
     # sudo npm install ts-node -g
 
-    pm2 prestart:prod
-    pm2 start:prod
-    pm2 start:hmr
+    npm prestart:prod
+    npm start:prod
+    npm start:hmr
     
 #   register: execute_node
 
