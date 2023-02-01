@@ -8,8 +8,35 @@
     src: artifact.tar.gz
     dest: ~/backend-app
 
-- name: "Run Server"
+# - name: "Installing Node Dependencies"
+#   shell: |
+#     cd ~/backend-app
+#     npm i
+
+- name: "Configure pm2 to start as service"
   become: true
-  command: pm2 start npm -- start
-  args:
-    chdir: ./backend-app
+  shell: |
+    env PATH=$PATH:/usr/local/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu
+
+- name: "Executing Node app with PM2"
+  shell: |
+    cd ~/backend-app/dist
+
+    # sudo npm install forever -g
+    # sudo npm install ts-node -g
+
+    pm2 prestart:prod
+    pm2 start:prod
+    pm2 start:hmr
+    
+#   register: execute_node
+
+# - name: print message
+#   debug:
+#     msg: "{{ execute_node.stdout_lines }}"
+
+# - name: "Run Server"
+#   become: true
+#   command: pm2 start npm -- start
+#   args:
+#     chdir: ./backend-app
