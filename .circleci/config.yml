@@ -411,20 +411,20 @@ jobs:
       - destroy-environment
       - revert-migrations
 
-  cloudfront-update:
-    docker:
-      # Docker image here that supports AWS CLI
-    steps:
-      - checkout
-      - run:
-          name: Install dependencies
-          command: |
-            # your code here
-      - run:
-          name: Update cloudfront distribution
-          command: |
-          # your code here
-    # Here's where you will add some code to rollback on failure
+  # cloudfront-update:
+  #   docker:
+  #     # Docker image here that supports AWS CLI
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Install dependencies
+  #         command: |
+  #           # your code here
+  #     - run:
+  #         name: Update cloudfront distribution
+  #         command: |
+  #         # your code here
+  #   # Here's where you will add some code to rollback on failure
 
 
 workflows:
