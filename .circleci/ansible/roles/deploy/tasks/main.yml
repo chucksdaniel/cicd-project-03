@@ -19,14 +19,17 @@
 - name: 'start application'
   become: yes
   shell: |
-    npm install
-    pm2 stop default
+    pm2 delete all
+    pm2 start ecosystem.js
+    pm2 save
+    pm2 startup
+
     pm2 start npm -- start
 
-    # npm start -c "ts-node -r tsconfig-paths/register -r dotenv/config src/main.ts" ./
 
 
 # - name: "Configure pm2 to start as service"
+    # pm2 stop default
 #   become: true
 #   shell: |
 #     env PATH=$PATH:/usr/local/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu
