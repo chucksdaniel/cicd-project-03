@@ -13,6 +13,14 @@
 #     cd ~/backend-app
 #     npm i
 
+- name: 'install pm2'
+  become: yes
+  npm:
+    name: pm2
+    global: yes
+    state: latest
+    production: yes
+
 - name: "Configure pm2 to start as service"
   become: true
   shell: |
@@ -22,13 +30,22 @@
   shell: |
     cd ~/backend-app
 
+- name: 'start application'
+  become: yes
+  shell: |
+    npm install
+    pm2 stop default
+    pm2 start npm -- start
+
+# - name: "Start application"
     # sudo npm install forever -g
     # sudo npm install ts-node -g
 
     # pm2 start npm -- start
 
-    npm start -c "ts-node -r tsconfig-paths/register -r dotenv/config src/main.ts" ./
-    
+    # npm start -c "ts-node -r tsconfig-paths/register -r dotenv/config src/main.ts" ./
+
+   
 #   register: execute_node
 
 # - name: print message
