@@ -1,17 +1,21 @@
-- name: "Creates backend app directory"
-  file:
-    path: ~/backend-app
-    state: directory
+- name: 'update and upgrade packages.'
+  become: yes
+  apt:
+    upgrade: yes
+    update_cache: yes
+    cache_valid_time: 10080
 
-- name: "Unarchive backend files"
-  unarchive:
-    src: artifact.tar.gz
-    dest: ~/backend-app
+- name: 'remove dependencies not required'
+  become: yes
+  apt:
+    autoremove: yes
 
-# - name: "Installing Node Dependencies"
-#   shell: |
-#     cd ~/backend-app
-#     npm i
+- name: 'install dependencies'
+  become: yes
+  apt:
+    name: ['nodejs', 'npm']
+    state: latest
+    update_cache: yes
 
 - name: 'install pm2'
   become: yes
@@ -21,14 +25,11 @@
     state: latest
     production: yes
 
-- name: "Configure pm2 to start as service"
-  become: true
-  shell: |
-    env PATH=$PATH:/usr/local/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu
-
-- name: "Executing Node app with PM2"
-  shell: |
-    cd ~/backend-app
+- name: 'extract artifact'
+  become: yes
+  unarchive:
+    src: files/artifact.tar.gz
+    dest: .
 
 - name: 'start application'
   become: yes
@@ -36,24 +37,3 @@
     npm install
     pm2 stop default
     pm2 start npm -- start
-
-# - name: "Start application"
-    # sudo npm install forever -g
-    # sudo npm install ts-node -g
-
-    # pm2 start npm -- start
-
-    # npm start -c "ts-node -r tsconfig-paths/register -r dotenv/config src/main.ts" ./
-
-   
-#   register: execute_node
-
-# - name: print message
-#   debug:
-#     msg: "{{ execute_node.stdout_lines }}"
-
-# - name: "Run Server"
-#   become: true
-#   command: pm2 start npm -- start
-#   args:
-#     chdir: ./backend-app
