@@ -8,6 +8,11 @@
     src: artifact.tar.gz
     dest: ~/backend-app
 
+- name: "Installing Node Dependencies"
+  shell: |
+    cd ~/backend-app
+    npm i
+
 - name: 'install pm2'
   become: yes
   npm:
@@ -19,21 +24,7 @@
 - name: 'start application'
   become: yes
   shell: |
-    pm2 delete all
-    pm2 start ecosystem.js
     pm2 save
     pm2 startup
 
     pm2 start npm -- start
-
-
-
-# - name: "Configure pm2 to start as service"
-    # pm2 stop default
-#   become: true
-#   shell: |
-#     env PATH=$PATH:/usr/local/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu
-
-# - name: "Executing Node app with PM2"
-#   shell: |
-#     cd ~/backend-app
