@@ -8,11 +8,6 @@
     src: artifact.tar.gz
     dest: ~/backend-app
 
-- name: "Installing Node Dependencies"
-  shell: |
-    cd ~/backend-app
-    npm i
-
 - name: 'install pm2'
   become: yes
   npm:
@@ -24,7 +19,5 @@
 - name: 'start application'
   become: yes
   shell: |
-    pm2 save
-    pm2 startup
 
     pm2 start npm -- start
