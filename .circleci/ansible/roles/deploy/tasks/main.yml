@@ -8,11 +8,6 @@
     src: artifact.tar.gz
     dest: ~/backend-app
 
-# - name: "Installing Node Dependencies"
-#   shell: |
-#     cd ~/backend-app
-#     npm i
-
 - name: "Configure pm2 to start as service"
   become: true
   shell: |
@@ -25,18 +20,8 @@
     # sudo npm install forever -g
     # sudo npm install ts-node -g
 
-    pm2 start npm -- start
+    npm start
+    # pm2 start npm -- start
 
     # npm start -c "ts-node -r tsconfig-paths/register -r dotenv/config src/main.ts" ./
     
-#   register: execute_node
-
-# - name: print message
-#   debug:
-#     msg: "{{ execute_node.stdout_lines }}"
-
-# - name: "Run Server"
-#   become: true
-#   command: pm2 start npm -- start
-#   args:
-#     chdir: ./backend-app
