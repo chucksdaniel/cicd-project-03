@@ -341,7 +341,7 @@ jobs:
             - "8c:1b:d6:2d:60:be:9c:94:23:9a:a0:dc:11:de:b3:0c"
       - attach_workspace:
           at: ~/
-      Install dependencies
+      # Install dependencies
       - install_nodejs
       - install_awscli
       - install_ansible
