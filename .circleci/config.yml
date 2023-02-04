@@ -332,8 +332,8 @@ jobs:
 
   deploy-backend:
     docker:
-      # - image: cimg/base:stable
-      - image: python:3.7-alpine3.16
+      - image: cimg/base:stable
+      # - image: python:3.7-alpine3.16
     steps:
       - checkout
       - add_ssh_keys:
@@ -341,16 +341,16 @@ jobs:
             - "8c:1b:d6:2d:60:be:9c:94:23:9a:a0:dc:11:de:b3:0c"
       - attach_workspace:
           at: ~/
-      # Install dependencies
-      # - install_nodejs
-      # - install_awscli
-      # - install_ansible
+      Install dependencies
+      - install_nodejs
+      - install_awscli
+      - install_ansible
 
-      - run:
-          name: Install dependencies
-          command: |
-            apk add --update --no-cache curl tar gzip ansible nodejs npm openssh
-            pip install awscli
+      # - run:
+      #     name: Install dependencies
+      #     command: |
+      #       apk add --update --no-cache curl tar gzip ansible nodejs npm openssh
+      #       pip install awscli
         
       - run:
           name: Deploy backend
