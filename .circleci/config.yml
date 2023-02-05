@@ -228,7 +228,7 @@ jobs:
             - "8c:1b:d6:2d:60:be:9c:94:23:9a:a0:dc:11:de:b3:0c"
       # attach workspace
       - attach_workspace:
-          at: ~/
+          at: ~/project
 
       # - run:
       #     name: Install dependencies
@@ -240,7 +240,7 @@ jobs:
       - install_nodejs
 
       - attach_workspace:
-          at: ~/
+          at: ~/project
 
       - run:
           name: Configure server
@@ -291,7 +291,7 @@ jobs:
       #     fingerprints:
       #       - "8c:1b:d6:2d:60:be:9c:94:23:9a:a0:dc:11:de:b3:0c"
       - attach_workspace:
-          at: ~/
+          at: ~/project
 
       - run:
           name: Install dependencies
