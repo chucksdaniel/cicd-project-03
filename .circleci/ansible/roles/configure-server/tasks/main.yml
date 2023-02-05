@@ -1,27 +1,22 @@
-- name: "update apt packages."
-  become: true
-  apt:
-    update_cache: yes
-
-- name: "upgrade packages"
+- name: "Update and Upgrade packages"
   become: true
   apt:
     upgrade: yes
+    update_cache: yes
 
-- name: "install dependencies."
+- name: "Install Dependencies"
   become: true
   apt:
-    name: ["nodejs", "npm", "python3", "tar", "gzip", "git"]
+    name: ["nodejs", "tar", "gzip", "npm"]
     state: latest
     update_cache: yes
 
-- name: "Install pm2 globally"
-  become: true
-  npm:
+- name: "Install PM2 Globally"
+  npm: 
     name: pm2
     global: yes
 
-- name: "move env variables to /etc/profile.d"
+- name: "Move env variable to /etc/profile.d"
   become: true
   copy:
     src: myenv.sh
