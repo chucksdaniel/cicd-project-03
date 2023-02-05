@@ -16,8 +16,5 @@
 - name: "Executing Node app with PM2"
   shell: |
     cd ~/backend-app
-    sudo npm install forever -g
-    sudo npm install ts-node -g
-
-    npm start -c "ts-node -r tsconfig-paths/register -r dotenv/config src/main.ts" ./
+    pm2 start npm -- start
     
