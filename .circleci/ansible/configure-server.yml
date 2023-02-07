@@ -44,4 +44,4 @@
 
   roles:
     - configure-server
-    - configure-premetheous-node-exporter
+    # - configure-premetheous-node-exporter
